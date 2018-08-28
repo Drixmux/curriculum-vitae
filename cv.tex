@@ -1,0 +1,357 @@
+\documentclass[svgnames]{article}
+\usepackage{xcolor}
+\usepackage[skins]{tcolorbox}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{fix-cm}
+\usepackage{setspace}
+
+ 
+% command to facilitate the change in font size
+\newcommand\myfont[2]{\fontsize{#1}{#2}\fontfamily{pag}\selectfont}
+
+\newcommand\sectionTitle[3] {
+	\node[xshift=#1,
+   		yshift=#2,
+   		text=white,
+   		font=\myfont{25}{48}] {
+   			#3
+   	};	
+}
+\newcommand\sectionInfo[2] {
+	\node[xshift=-0.8cm,
+		yshift=#1,
+   		text width=7cm,
+   		text=white,
+   		anchor=north,
+   		font=\myfont{14}{15}] {
+			\justifying { #2 }
+   	};
+}
+
+\newcommand\contactIconInline[3] {
+	\begin{scope}[xshift=-1cm,
+   			yshift=#1]
+		\node[circle,
+			xshift=-2.5cm,
+			inner sep=0.4cm,
+			anchor=east,
+			fill overzoom image=#2] (A) at (0,0) {};
+		
+		\node[xshift=1.3cm,
+			yshift=0.25cm,
+   			text width=7cm,
+   			text=white,
+   			anchor=north,
+   			font=\myfont{10}{48}] {
+				#3
+   		};
+
+	\end{scope}
+}
+\newcommand\contentSectionTitle[4] {
+	\begin{scope}[xshift=#1,
+   			yshift=#2]
+		\node[circle,
+			xshift=5.5cm,
+			yshift=2.5cm,
+			inner sep=0.4cm,
+			anchor=east,
+			fill overzoom image=#3] (A) at (0,0) {};
+		
+		\node[xshift=6cm,
+   			yshift=2cm,
+   			text=MidnightBlue,
+   			text width=10cm,
+   			font=\myfont{25}{48},
+	   		above right] {
+   				#4
+	   	};
+
+	\end{scope}
+}
+\newcommand\contentInThreeRows[5] {
+	\begin{scope}[xshift=#1,
+   			yshift=#2]
+		
+		\node[xshift=4cm,
+   			yshift=2cm,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{18}{48},
+   			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#3
+				\end{center}
+	   	};
+	   	\node[xshift=4cm,
+   			yshift=1cm,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{16}{48},
+   			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#4
+				\end{center}
+	   	};
+	   	\node[xshift=4cm,
+   			yshift=0.3cm,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{14}{15},
+			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#5
+				\end{center}
+	   	};
+
+	\end{scope}
+}
+
+\newcommand\contentInThreeRowsLongDesc[6] {
+	\begin{scope}[xshift=#1,
+   			yshift=#2]
+		
+		\node[xshift=4cm,
+   			yshift=2cm,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{18}{15},
+   			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#4
+				\end{center}
+	   	};
+	   	\node[xshift=4cm,
+   			yshift=1cm,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{16}{15},
+   			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#5
+				\end{center}
+	   	};
+	   	\node[xshift=4cm,
+   			yshift=#3,
+   			text=MidnightBlue,
+   			text width=11.5cm,
+   			font=\myfont{14}{15},
+			anchor=north,
+	   		above right] {
+				\begin{center}
+   					#6
+				\end{center}
+	   	};
+
+	\end{scope}
+}
+\newcommand\skillGroupRow[3] {
+	\begin{scope}[xshift=#1,
+   			yshift=#2]
+	   	\node[xshift=4cm,
+   			yshift=3cm,
+   			text width=11cm,
+   			font=\myfont{14}{15},
+			anchor=north,
+	   		above right] {
+   				#3
+	   	};
+
+	\end{scope}
+}
+\newcommand\skillRow[4] {
+	\begin{scope}[xshift=#1,
+   			yshift=#2]
+	   	\node[xshift=5cm,
+   			yshift=3cm,
+   			text width=4cm,
+   			font=\myfont{14}{15},
+			anchor=north,
+	   		above right] {
+   				#4
+	   	};
+	   	
+		\fill[orange!40!white] (8,3.2) rectangle (#3,3.6);
+		\draw (8,3.2) -- (15,3.2) -- (15,3.6) -- (8,3.6) -- (8,3.2);
+
+	\end{scope}
+}
+
+\begin{document}
+\thispagestyle{empty}
+ 
+\begin{tikzpicture}[remember picture,overlay]
+	% violet rectangle	
+	\draw [draw=DarkViolet,
+		fill=DarkViolet]
+     (current page.south west) rectangle (3.5,\paperheight);  
+   
+   	% profile image
+   	\begin{scope}[xshift=-0.8cm,
+   				yshift=0.9cm]
+		\node[circle,
+			draw,
+			inner sep=2cm,
+			fill overzoom image=assets/profile_picture2] (A) at (0,0) {};
+	\end{scope}
+	     
+   	% full name
+   	\node[xshift=-0.8cm,
+   		yshift=-3cm,
+   		text=orange,
+   		font=\myfont{25}{48}] {
+   			FERNANDO
+   	};
+   	\node[xshift=-0.8cm,
+   		yshift=-4cm,
+   		text=orange,
+   		font=\myfont{25}{48}] {
+   			MACEDA SILVA
+   	};
+	
+	% title
+   	\node[xshift=-0.8cm,
+   		yshift=-5cm,
+   		text=white,
+   		font=\myfont{18}{48}] {
+   			SYSTEMS ENGINEER
+   	};
+   	
+   	% about me
+   	\sectionTitle{-0.8cm}{-6.5cm} {
+		ABOUT ME   	
+   	}
+   	\sectionInfo{-7.5cm} {
+   		I'm a person who is always ready to learn something new. I'm also enjoy solving any kind of problems using new technologies.
+   	}
+   	
+   	% contact
+   	\sectionTitle{-0.8cm}{-11.5cm} {
+		CONTACT ME
+   	}
+   	\contactIconInline {-13cm} {
+   		assets/fb
+   	} {
+   		/fernandomace.dasilva
+   	}
+   	\contactIconInline {-14.5cm} {
+   		assets/twitter
+   	} {
+   		@FernandoMacedaS
+   	}
+   	\contactIconInline {-16cm} {
+   		assets/linkedin
+   	} {
+   		/fernando-maceda-silva-a87218129/
+   	}
+   	\contactIconInline {-17.5cm} {
+   		assets/phone-number
+   	} {
+   		+591 78989963
+   	}
+	\contactIconInline {-19cm} {
+   		assets/email
+   	} {
+		ferna.mace.34@gmail.com
+   	}
+   	\contactIconInline {-20.5cm} {
+   		assets/github
+   	} {
+		/Drixmux
+   	}
+	
+	% content
+	\contentSectionTitle {0cm} {0cm} {
+		assets/education
+	} {
+		EDUCATION
+	}
+	\contentInThreeRows {0cm} {-1.5cm} {
+		SYSTEMS ENGINEER
+	} {
+		Bolivian Catholic University
+	} {
+		January 2012 to September 2018
+	}
+	
+	\contentSectionTitle {0cm} {-5cm} {
+		assets/experience
+	} {
+		EXPERIENCE
+	}
+	\contentInThreeRowsLongDesc {0cm} {-6.5cm} {-0.8cm} {
+		INTERN
+	} {
+		University Health Insurance
+	} {
+		(September 2015 to December 2015) \\ I developed an information system to manage all insured people information.
+	}
+	\contentInThreeRowsLongDesc {0cm} {-11cm} {-3cm} {
+		FULL STACK DEVELOPER
+	} {
+		MOJIX
+	} {
+		 (April 2017 to present) \\ Working for Manheim as a contractor. I have experience working on UI tasks using Angular 4, Rest Api using Oracle databases and Java, infrastructure and micro services using Amazon Web Services and also quality control using cucumber framework.
+	}
+	
+	\contentSectionTitle {0cm} {-17.5cm} {
+		assets/skills
+	} {
+		SKILLS
+	}
+	
+	\skillGroupRow{0cm} {-19.5cm} {
+		Programming Languages
+	}
+	% 7     = 100%
+	% 0.07  = 1%
+   	% % = x% * 0.07
+   	\skillRow{0cm} {-20cm} {13.25} {
+   		JavaScript
+   	}
+   	\skillRow{0cm} {-20.5cm} {13.95} {
+   		PHP
+   	}
+   	\skillRow{0cm} {-21cm} {10.45} {
+   		Java
+   	}
+   	\skillRow{0cm} {-21.5cm} {12.55} {
+   		Python
+   	}
+   	
+   	\skillGroupRow{0cm} {-22cm} {
+		Databases
+	}
+	\skillRow{0cm} {-22.5cm} {13.95} {
+   		My SQL
+   	}
+   	\skillRow{0cm} {-23cm} {12.90} {
+   		Oracle
+   	}
+   
+    \skillGroupRow{0cm} {-23.5cm} {
+		Infrastructure
+	}
+	\skillRow{0cm} {-24.5cm} {11.85} {
+   		Amazon Web Services
+   	}
+   	
+   	\skillGroupRow{0cm} {-25cm} {
+		Languages
+	}
+	\skillRow{0cm} {-25.5cm} {13.95} {
+   		Spanish
+   	}
+   	\skillRow{0cm} {-26cm} {12.90} {
+   		English
+   	}
+	
+\end{tikzpicture}
+ 
+\end{document}
